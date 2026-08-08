@@ -7,7 +7,7 @@ systemd, and reverse-proxied by Nginx — not a static export.
 subdomain on the same shared AWS EC2 box that runs the main
 [Global Designer Hub](https://globaldesignerhub.com) Django platform. The
 app is isolated from the other tenants: its own systemd unit, its own
-Nginx server block, its own port (`8020`, bound to `127.0.0.1` only).
+Nginx server block, its own port (`8015`, bound to `127.0.0.1` only).
 
 ## 1. Layout on the box
 
@@ -33,7 +33,7 @@ Group=www-data
 WorkingDirectory=/var/www/maria-hair-studio
 
 Environment=NODE_ENV=production
-Environment=PORT=8020
+Environment=PORT=8015
 Environment=HOSTNAME=127.0.0.1
 
 ExecStart=/usr/bin/npm start
@@ -47,7 +47,7 @@ WantedBy=multi-user.target
 
 `npm start` runs `next start`, which serves the regular (non-static)
 `.next` build produced by `npm run build`. The app only listens on
-`127.0.0.1:8020` — it's not reachable directly, only via the Nginx proxy.
+`127.0.0.1:8015` — it's not reachable directly, only via the Nginx proxy.
 
 ## 3. Nginx
 
@@ -79,7 +79,7 @@ server {
     client_max_body_size 20M;
 
     location / {
-        proxy_pass http://127.0.0.1:8020;
+        proxy_pass http://127.0.0.1:8015;
 
         proxy_http_version 1.1;
 
