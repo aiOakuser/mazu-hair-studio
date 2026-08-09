@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111111;
+  --background: #000000;
+  --foreground: #f2ede3;
 }
 
 @theme inline {
@@ -10,13 +10,14 @@
   --color-foreground: var(--foreground);
 
   /* Design tokens — see DESIGN.md §1 */
-  --color-ink: #111111;
+  --color-ink: #1a1512;
   --color-ink-on-fill: #ffffff;
-  --color-text-secondary: #666666;
-  --color-border: #e5e5e5;
-  --color-surface-hover: #fafafa;
-  --color-accent: #b5432b;
-  --color-accent-hover: #93361f;
+  --color-text-secondary: #6b6258;
+  --color-border: #e7e0d5;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5efe4;
+  --color-accent: #b8873a;
+  --color-accent-hover: #96692a;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
