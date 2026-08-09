@@ -2,9 +2,7 @@ import type { Business } from "@/lib/types";
 
 const ADDRESS = "5205 Prospect Rd, San Jose, CA 95129";
 
-// Placeholder booking destination — swap for the real booking provider
-// (Square Appointments / Fresha / in-house flow) per PLAN.md §4.
-const BOOKING_URL = "#book";
+const BOOKING_URL = "https://book.globaldesignerhub.com/appointments";
 
 export const business: Business = {
   name: "Maria Hair Studio",
@@ -16,7 +14,13 @@ export const business: Business = {
     `Maria Hair Studio, ${ADDRESS}`
   )}`,
   bookingHref: BOOKING_URL,
-  myBookingsHref: "#my-bookings",
+  myBookingsHref: "https://book.globaldesignerhub.com/completeProfile",
+  cancellationPolicy: [
+    "We ask that you please reschedule or cancel at least 2 days before the beginning of your appointment or you may be charged a cancellation fee.",
+    "Less than 24 hour notice will result in a charge equal to 100% of the reserved service amount.",
+    "“No shows” and “same day cancellation” will also be charged 100% of the reserved service amount.",
+    "Thank you for your understanding.",
+  ],
   hours: [
     { day: "Monday" },
     { day: "Tuesday", open: "10:00 am", close: "6:00 pm" },

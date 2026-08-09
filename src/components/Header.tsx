@@ -1,51 +1,27 @@
+import Image from "next/image";
 import Link from "next/link";
-
-function AccountIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function CartIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M4 4h2l2.2 11.2a2 2 0 0 0 2 1.6h6.6a2 2 0 0 0 2-1.6L20.5 8H7"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="10" cy="20.5" r="1.2" fill="currentColor" />
-      <circle cx="17" cy="20.5" r="1.2" fill="currentColor" />
-    </svg>
-  );
-}
+import { AccountButton } from "@/components/AccountButton";
+import { CartIcon } from "@/components/icons";
 
 export function Header({ businessName }: { businessName: string }) {
   return (
-    <header className="border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
-        <div className="w-10" aria-hidden="true" />
-        <Link
-          href="/"
-          className="font-display text-lg tracking-wide text-ink"
-        >
-          {businessName}
+    <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-2">
+        <Link href="/" aria-label={businessName} className="flex shrink-0 items-center py-2">
+          <div className="relative h-20 aspect-[1008/577] overflow-hidden rounded-xl bg-[#f2ede3] sm:h-24">
+            <Image
+              src="/logo.png"
+              alt={businessName}
+              fill
+              sizes="180px"
+              className="object-cover"
+              priority
+            />
+          </div>
         </Link>
-        <div className="flex items-center gap-4 text-ink">
-          <button type="button" aria-label="Account" className="hover:text-text-secondary">
-            <AccountIcon />
-          </button>
-          <button type="button" aria-label="Cart" className="hover:text-text-secondary">
+        <div className="flex items-center gap-4 text-foreground">
+          <AccountButton />
+          <button type="button" aria-label="Cart" className="transition-colors hover:text-accent">
             <CartIcon />
           </button>
         </div>

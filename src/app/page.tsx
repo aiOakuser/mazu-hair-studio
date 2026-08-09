@@ -1,11 +1,9 @@
+import Link from "next/link";
 import { Header } from "@/components/Header";
-import { BusinessInfoBar } from "@/components/BusinessInfoBar";
-import { Button } from "@/components/Button";
-import { ServiceMenuTabs } from "@/components/ServiceMenuTabs";
+import { BookingExperience } from "@/components/BookingExperience";
 import { LocationFooter } from "@/components/LocationFooter";
 import { business } from "@/data/business";
 import { services } from "@/data/services";
-import { staff } from "@/data/staff";
 
 export default function Home() {
   return (
@@ -13,25 +11,32 @@ export default function Home() {
       <Header businessName={business.name} />
 
       <main className="flex-1">
-        <div className="mx-auto max-w-6xl px-6 py-8">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+        <div className="mx-auto max-w-6xl px-6 py-8 lg:py-10">
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <h1 className="text-xl font-semibold text-ink mb-3">Service menu</h1>
-              <BusinessInfoBar business={business} />
+              <h1 className="font-display text-2xl text-foreground sm:text-3xl">Book an appointment</h1>
+              <p className="mt-1 text-foreground/70">
+                Pick a category, add services, and we&apos;ll take it from there.
+              </p>
             </div>
-            <div className="flex flex-col gap-2 w-full md:w-48 shrink-0">
-              <Button href={business.bookingHref} variant="primary">
+
+            <div className="flex w-full flex-col gap-2 sm:w-48 sm:shrink-0">
+              <Link
+                href={business.bookingHref}
+                className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-ink-on-fill transition-colors hover:bg-accent-hover"
+              >
                 Book
-              </Button>
-              <Button href={business.myBookingsHref} variant="secondary">
+              </Link>
+              <Link
+                href={business.myBookingsHref}
+                className="inline-flex w-full items-center justify-center rounded-full border border-foreground/40 px-6 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+              >
                 My bookings
-              </Button>
+              </Link>
             </div>
           </div>
 
-          <div className="mt-8">
-            <ServiceMenuTabs services={services} staff={staff} />
-          </div>
+          <BookingExperience services={services} business={business} />
         </div>
       </main>
 

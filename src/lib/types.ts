@@ -1,6 +1,8 @@
 export interface Service {
   id: string;
   name: string;
+  /** Category tab this service is grouped under, e.g. "Haircut", "Color". */
+  category: string;
   /** Freeform human price summary shown under the title, e.g. "$80 – $120", "$330–", "Price Varies". */
   priceLabel: string;
   /** Optional 1-3 sentence description. Omit entirely (not empty string) when the card has none. */
@@ -10,14 +12,6 @@ export interface Service {
   /** Duration shown bottom-right next to the price, e.g. "1hr", "3hrs 30 mins". Omit for price-varies services. */
   durationLabel?: string;
   bookingHref: string;
-}
-
-export interface StaffMember {
-  id: string;
-  name: string;
-  title?: string;
-  photoUrl?: string;
-  serviceIds: string[];
 }
 
 export interface DayHours {
@@ -36,4 +30,5 @@ export interface Business {
   bookingHref: string;
   myBookingsHref: string;
   hours: DayHours[];
+  cancellationPolicy: string[];
 }
