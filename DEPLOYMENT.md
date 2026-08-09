@@ -36,7 +36,7 @@ Environment=NODE_ENV=production
 Environment=PORT=8015
 Environment=HOSTNAME=127.0.0.1
 
-ExecStart=/usr/bin/npm start
+ExecStart=/opt/nodejs22/bin/npm start
 
 Restart=always
 RestartSec=5
@@ -48,6 +48,13 @@ WantedBy=multi-user.target
 `npm start` runs `next start`, which serves the regular (non-static)
 `.next` build produced by `npm run build`. The app only listens on
 `127.0.0.1:8015` — it's not reachable directly, only via the Nginx proxy.
+
+Next.js 16 requires Node ≥20.9; the box's default `npm` on `$PATH` (as of
+this writing, Node 18.19.1 / npm 9.2.0) is too old and will silently
+produce a broken `node_modules` (missing/unusable `next` bin) if used for
+a manual `npm ci` / `npm run build`. Always use the same Node 22 install
+the service runs (`/opt/nodejs22/bin/npm`), as `www-data`, so the build
+matches what systemd will execute and file ownership stays correct.
 
 ## 3. Nginx
 
@@ -112,13 +119,32 @@ Already issued via certbot for this subdomain, alongside the other
 ```bash
 cd /var/www/maria-hair-studio
 git pull origin maria-hair-studio-mvp
-npm ci
-npm run build
+sudo -u www-data env PATH="/opt/nodejs22/bin:$PATH" npm ci
+sudo -u www-data env PATH="/opt/nodejs22/bin:$PATH" npm run build
 sudo systemctl restart maria-hair-studio
 ```
 
 `systemctl restart` is required (not just an Nginx reload) since the
 running Node process needs to pick up the new build.
+
+**`PATH`, not just the binary path, matters.** `npm` is a JS file starting
+with `#!/usr/bin/env node`, so even invoking it by full path
+(`/opt/nodejs22/bin/npm`) still lets the shebang's own `env node` lookup
+fall through to whatever `node` is first on `$PATH` — which on this box is
+the system's Node 18, too old for Next 16 (>=20.9 required) and silently
+produces a broken `node_modules` (missing/unusable `next` bin). Always
+prepend `/opt/nodejs22/bin` to `PATH` as shown above rather than calling
+the binary by path alone.
+
+**Never run `npm ci`/`npm run build` as root.** The service runs as
+`www-data`; a root-run install leaves root-owned files in `node_modules`
+that a later `www-data` install can't clean up (`EACCES` on `rmdir`). If
+that happens: `sudo chown -R www-data:www-data /var/www/maria-hair-studio`
+before retrying. `www-data` also needs a writable npm cache/home — if
+`/var/www/.npm` doesn't exist yet or isn't `www-data`-owned, create it
+(`sudo mkdir -p /var/www/.npm && sudo chown -R www-data:www-data
+/var/www/.npm`); this is scoped to that one directory, not all of
+`/var/www`, which hosts other tenants on this box.
 
 ## Verify
 
