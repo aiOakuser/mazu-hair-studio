@@ -6,7 +6,7 @@ import { HoursTable } from "@/components/HoursTable";
 export function LocationFooter({ business }: { business: Business }) {
   return (
     <section className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="w-full px-6 py-12">
         <h2 className="font-display text-xl text-ink mb-6">Location &amp; Hours</h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.2fr_1fr_0.8fr]">
           <LocationMap mapQuery={business.mapQuery} businessName={business.name} />

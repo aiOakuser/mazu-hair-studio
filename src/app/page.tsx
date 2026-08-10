@@ -11,7 +11,7 @@ export default function Home() {
       <Header businessName={business.name} />
 
       <main className="flex-1">
-        <div className="mx-auto max-w-6xl px-6 py-8 lg:py-10">
+        <div className="mx-auto max-w-[108rem] px-6 py-8 lg:py-10">
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h1 className="font-display text-2xl text-foreground sm:text-3xl">Book an appointment</h1>

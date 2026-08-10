@@ -3,7 +3,7 @@
 This site runs as a long-lived Next.js server (`next start`), managed by
 systemd, and reverse-proxied by Nginx — not a static export.
 
-**Target:** `mariahairstylist.beauty.globaldesignerhub.com`, a tenant
+**Target:** `maria-hair-studio.beauty.globaldesignerhub.com`, a tenant
 subdomain on the same shared AWS EC2 box that runs the main
 [Global Designer Hub](https://globaldesignerhub.com) Django platform. The
 app is isolated from the other tenants: its own systemd unit, its own
@@ -66,7 +66,7 @@ server {
     listen 80;
     listen [::]:80;
 
-    server_name mariahairstylist.beauty.globaldesignerhub.com;
+    server_name maria-hair-studio.beauty.globaldesignerhub.com;
 
     return 301 https://$host$request_uri;
 }
@@ -75,10 +75,10 @@ server {
     listen 443 ssl;
     listen [::]:443 ssl;
 
-    server_name mariahairstylist.beauty.globaldesignerhub.com;
+    server_name maria-hair-studio.beauty.globaldesignerhub.com;
 
-    ssl_certificate /etc/letsencrypt/live/mariahairstylist.beauty.globaldesignerhub.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/mariahairstylist.beauty.globaldesignerhub.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/maria-hair-studio.beauty.globaldesignerhub.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/maria-hair-studio.beauty.globaldesignerhub.com/privkey.pem;
 
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
@@ -106,7 +106,7 @@ server {
 
 ## 4. DNS
 
-`mariahairstylist.beauty.globaldesignerhub.com` resolves (Cloudflare) to
+`maria-hair-studio.beauty.globaldesignerhub.com` resolves (Cloudflare) to
 the same EC2 IP as the rest of `*.globaldesignerhub.com`.
 
 ## 5. SSL
@@ -149,7 +149,7 @@ before retrying. `www-data` also needs a writable npm cache/home — if
 ## Verify
 
 ```bash
-curl -I https://mariahairstylist.beauty.globaldesignerhub.com
+curl -I https://maria-hair-studio.beauty.globaldesignerhub.com
 sudo systemctl status maria-hair-studio
 ```
 
