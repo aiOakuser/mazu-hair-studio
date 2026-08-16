@@ -14,7 +14,7 @@ export const business: Business = {
     `Maria Hair Studio, ${ADDRESS}`
   )}`,
   bookingHref: BOOKING_URL,
-  myBookingsHref: "https://app.globaldesignerhub.com/complete-profile",
+  myBookingsHref: "https://app.globaldesignerhub.com",
   cancellationPolicy: [
     "We ask that you please reschedule or cancel at least 2 days before the beginning of your appointment or you may be charged a cancellation fee.",
     "Less than 24 hour notice will result in a charge equal to 100% of the reserved service amount.",
