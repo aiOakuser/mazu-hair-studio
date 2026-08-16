@@ -1,5 +1,6 @@
 import type { Service } from "@/lib/types";
 import { CheckIcon, PlusIcon } from "@/components/icons";
+import { ServiceCategoryIcon } from "@/components/serviceIcons";
 
 export function ServiceList({
   category,
@@ -29,15 +30,21 @@ export function ServiceList({
               key={service.id}
               className="flex items-start justify-between gap-4 p-5 transition-colors hover:bg-surface-hover"
             >
-              <div className="min-w-0">
-                <p className="font-medium text-ink">{service.name}</p>
-                <p className="mt-0.5 text-sm text-text-secondary">{service.priceLabel}</p>
-                {service.description && (
-                  <p className="mt-2 max-w-prose text-sm text-text-secondary line-clamp-2">
-                    {service.description}
-                  </p>
-                )}
-                <p className="mt-2 text-xs text-text-secondary">{meta}</p>
+              <div className="flex min-w-0 gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                  <ServiceCategoryIcon category={service.category} />
+                </span>
+
+                <div className="min-w-0">
+                  <p className="font-medium text-ink">{service.name}</p>
+                  <p className="mt-0.5 text-sm text-text-secondary">{service.priceLabel}</p>
+                  {service.description && (
+                    <p className="mt-2 max-w-prose text-sm text-text-secondary line-clamp-2">
+                      {service.description}
+                    </p>
+                  )}
+                  <p className="mt-2 text-xs text-text-secondary">{meta}</p>
+                </div>
               </div>
 
               <button
