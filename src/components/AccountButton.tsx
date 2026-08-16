@@ -5,7 +5,7 @@ import { AccountIcon } from "@/components/icons";
 export function AccountButton() {
   return (
     <Link
-      href={business.myBookingsHref}
+      href={business.accountHref}
       aria-label="Account"
       className="transition-colors hover:text-accent"
     >

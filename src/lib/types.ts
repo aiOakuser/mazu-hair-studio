@@ -29,6 +29,7 @@ export interface Business {
   directionsHref: string;
   bookingHref: string;
   myBookingsHref: string;
+  accountHref: string;
   hours: DayHours[];
   cancellationPolicy: string[];
 }
