@@ -3,7 +3,9 @@
   nixPkgs = ["nodejs_22"]
 
 [phases.install]
-  cmds = ["npm ci"]
+  # --include=dev so the build still gets typescript/tailwind/@types even if
+  # NODE_ENV=production leaks into the build environment.
+  cmds = ["npm ci --include=dev"]
 
 [phases.build]
   cmds = ["npm run build"]
