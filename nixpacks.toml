@@ -1,2 +1,14 @@
+[phases.setup]
+  # Next 16 requires Node >= 20.9; Nixpacks' default Node is older.
+  nixPkgs = ["nodejs_22"]
+
+[phases.install]
+  cmds = ["npm ci"]
+
+[phases.build]
+  cmds = ["npm run build"]
+
 [start]
-  cmd = "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8015"
+  # Bind explicitly: Docker sets $HOSTNAME to the container id, and the port
+  # must match Coolify's "Ports exposes" (8015) or the proxy can't reach us.
+  cmd = "npm run start -- --hostname 0.0.0.0 --port ${PORT:-8015}"
