@@ -1,21 +1,23 @@
 import type { Business } from "@/lib/types";
 
+const NAME = "mazu Hair Studio";
+
 const ADDRESS = "5205 Prospect Rd, San Jose, CA 95129";
 
 const BOOKING_URL = "https://book.globaldesignerhub.com/appointments";
 
 export const business: Business = {
-  name: "Maria Hair Studio",
+  name: NAME,
   phone: "(408) 296-9027",
   email: "chaeukoh@gmail.com",
   address: ADDRESS,
-  mapQuery: `Maria Hair Studio, ${ADDRESS}`,
+  mapQuery: `${NAME}, ${ADDRESS}`,
   directionsHref: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-    `Maria Hair Studio, ${ADDRESS}`
+    `${NAME}, ${ADDRESS}`
   )}`,
   bookingHref: BOOKING_URL,
   myBookingsHref: "https://app.globaldesignerhub.com",
-  accountHref: "https://maria-hair-studio.globaldesignerhub.com/customer-accounts",
+  accountHref: "https://mazu-hair-studio.globaldesignerhub.com/customer-accounts",
   cancellationPolicy: [
     "We ask that you please reschedule or cancel at least 2 days before the beginning of your appointment or you may be charged a cancellation fee.",
     "Less than 24 hour notice will result in a charge equal to 100% of the reserved service amount.",

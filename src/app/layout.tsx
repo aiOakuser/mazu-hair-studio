@@ -18,9 +18,9 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Maria Hair Studio — Service Menu & Booking",
+  title: "mazu Hair Studio — Service Menu & Booking",
   description:
-    "Book haircuts, color, perms, and treatments at Maria Hair Studio in San Jose, CA.",
+    "Book haircuts, color, perms, and treatments at mazu Hair Studio in San Jose, CA.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

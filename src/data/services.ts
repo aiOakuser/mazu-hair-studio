@@ -281,8 +281,8 @@ export const services: Service[] = [
     bookingHref: business.bookingHref,
   },
   {
-    id: "marias-mens-haircut",
-    name: "Maria's men's haircut",
+    id: "mazus-mens-haircut",
+    name: "mazu's Men's Haircut",
     category: "Men",
     priceLabel: "Price varies",
     priceValueLabel: "Price varies",
